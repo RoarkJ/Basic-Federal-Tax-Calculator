@@ -37,7 +37,7 @@ class FedTaxCalc:
 				tax += portion
 				# Calculate remaining income to calculate taxes on.
 				income_decrement -= tax_bracket_portion
-				# print(f'remaining income to be taxed {income_decremented}')
+				# print(f'remaining income to be taxed {income_decrement}')
 				# print('\n')
 			# If there is no more income remaining to calculate taxes on.	
 			else:
