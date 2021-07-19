@@ -16,8 +16,8 @@ class FedTaxCalc:
 	brackets: list	# Dollar value thresholds for each tax bracket.
 
 	def federal_tax_calculator(self, income):
-		tax = 0 								# Running total for final tax liability.
-		income_decrement = income 				# Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
+		tax = 0 				# Running total for final tax liability.
+		income_decrement = income 		# Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
 		tax_bracket_portion = 0 				# Amount of tax calculated for current bracket calculation on each loop.
 		running_income_portion_calculated = 0	# Running total of income for which tax has already been calculated.
 		income_after_tax = 0					# Final income remaining after all federal taxes have been calculated.
