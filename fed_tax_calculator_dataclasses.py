@@ -13,15 +13,15 @@ class FedTaxCalc:
 	'''
 	Federal Tax Information
 	'''
-	rates: list	# Tax rates for each tax bracket.
+	rates: list		# Tax rates for each tax bracket.
 	brackets: list	# Dollar value thresholds for each tax bracket.
 
 	def federal_tax_calculator(self, income):
-		tax = 0 				# Running total for final tax liability.
-		income_decrement = income 		# Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
-		tax_bracket_portion = 0 		# Amount of tax calculated for current bracket calculation on each loop.
+		tax = 0 								# Running total for final tax liability.
+		income_decrement = income 				# Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
+		tax_bracket_portion = 0 				# Amount of tax calculated for current bracket calculation on each loop.
 		running_income_portion_calculated = 0	# Running total of income for which tax has already been calculated.
-		income_after_tax = 0			# Final income remaining after all federal taxes have been calculated.
+		income_after_tax = 0					# Final income remaining after all federal taxes have been calculated.
 		for num in range(len(self.brackets)):
 			# Make sure there is income remaining to be taxed.
 			if income_decrement > 0:
@@ -45,9 +45,9 @@ class FedTaxCalc:
 				# Determine final income after all bracket tax values have been calculated. 
 				income_after_tax = income - tax
 				break
-		return f'Base Income: ${income:,.2f}, Tax: {tax:,.2f}, Income After Tax: {income_after_tax:,.2f}, Monthly Income: ${income_after_tax/12:,.2f}'
+		return f'Base Income: ${income:,.2f}, Tax: ${tax:,.2f}, Income After Tax: ${income_after_tax:,.2f}, Monthly Income: ${income_after_tax/12:,.2f}'
 
 		
-#results=FedTaxCalc(tax_rates, tax_brackets)
-#print(results.federal_tax_calculator(100000))
+# results=FedTaxCalc(tax_rates, tax_brackets)
+# print(results.federal_tax_calculator(100000))
 
