@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 tax_rates = [.10, .12, .22, .24, .32, .37]
 tax_brackets = [9700, 39475, 84200, 160725, 204100, 510300]
 
-# dataclass is a mechanism for declaring class attributes without having to write all the extra code to delcare attributes in the constructor.
+# dataclass is a mechanism for declaring class attributes without having to write all the extra code to delcare attributes in the constructor
 # that need to be initialized when the class is instantiated.
 @dataclass
 class FedTaxCalc:
