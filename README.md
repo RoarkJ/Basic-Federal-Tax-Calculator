@@ -9,3 +9,4 @@ In order to utilize the test script open a terminal and nevigate to the director
 enter the following:
 python -m unittest test_fed_tax_calculator.py
 If everything tests Okay you will see the following:
+![terminal output](images/terminal_output.png)
