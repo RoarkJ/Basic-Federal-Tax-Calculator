@@ -1,5 +1,5 @@
 # Basic-Federal-Tax-Calculator
-This is a basic federal tax calculator where one can input their net taxable income after deductions and get the amount of annual tax they will pay.
+This is a basic federal tax calculator where one can input their net taxable income after deductions and find out the amount of annual tax they will pay, annual take home income and monthly take home income.
 ## Objectives:
 ### To demonstrate use of Python's builtin dataclasses module.
 The fed_tax_calc... script uses Classes with a dataclass decorator.  This implementation is meant to show how one can use Pythons built in dataclasses module available beginning with Python 3.7.
