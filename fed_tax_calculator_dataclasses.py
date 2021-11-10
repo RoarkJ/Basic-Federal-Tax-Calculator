@@ -35,7 +35,7 @@ class FedTaxCalc:
 				income_decremented -= tax_bracket_portion
 				# If there is no more income remaining to calculate taxes on.
 				index += 1
-			elif index < 6 and index > 0:
+			elif index < 6:
 				tax_bracket_portion= min((self.brackets[index]-self.brackets[index-1]), income_decremented)
 				portion = tax_bracket_portion * self.rates[index]
 				tax += portion
@@ -53,5 +53,5 @@ class FedTaxCalc:
 		
 # Uncomment the next two lines to enter an annual gross income to calculate.	
 results=FedTaxCalc(tax_rates, tax_brackets)
-print(results.federal_tax_calculator(500000))
+print(results.federal_tax_calculator(1500000))
 
