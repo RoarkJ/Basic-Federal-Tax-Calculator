@@ -10,3 +10,4 @@ class TestFedTaxCalc(TestCase):
 	def test_fed_tax_calc(self):
 		tax = FedTaxCalc(tax_rates, tax_brackets)
 		self.assertEqual('Base Income: $100,000.00, Tax: 18,174.50, Income After Tax: 81,825.50, Monthly Income: $6,818.79', tax.federal_tax_calculator(100000))
+		

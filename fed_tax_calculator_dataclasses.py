@@ -2,8 +2,8 @@
 
 from dataclasses import dataclass, field
 
-
-tax_rates = [.10, .12, .22, .24, .32, .37]
+# These are Single filing status 2019 rates and brackets.
+tax_rates = [.10, .12, .22, .24, .32, .35, .37]
 tax_brackets = [9700, 39475, 84200, 160725, 204100, 510300]
 
 # dataclass is a mechanism for declaring class attributes without having to write all the extra code to delcare attributes in the constructor
@@ -13,41 +13,46 @@ class FedTaxCalc:
 	'''
 	Federal Tax Information
 	'''
-	rates: list	# Tax rates for each tax bracket.
+	rates: list		# Tax rates for each tax bracket.
 	brackets: list	# Dollar value thresholds for each tax bracket.
 
 	def federal_tax_calculator(self, income):
-		tax = 0 				# Running total for final tax liability.
-		income_decrement = income 		# Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
-		tax_bracket_portion = 0 		# Amount of tax calculated for current bracket calculation on each loop.
-		running_income_portion_calculated = 0	# Running total of income for which tax has already been calculated.
-		income_after_tax = 0			# Final income remaining after all federal taxes have been calculated.
-		for num in range(len(self.brackets)):
-			# Make sure there is income remaining to be taxed.
-			if income_decrement > 0:
+		tax = 0 								# Running total for final tax liability.
+		income_decremented = income				# Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
+		tax_bracket_portion = 0 				# Amount of tax calculated for current bracket calculation on each loop.
+		income_after_tax = 0					# Final income remaining after all federal taxes have been calculated.
+		index = 0
+		while income_decremented > 0:
+			if index == 0:
+				# Make sure there is income remaining to be taxed.
 				# print(f'calculated income portion: {tax_bracket_portion}')
-				# Determines if income remaining or tax bracket portion should be used for current loop.
-				tax_bracket_portion = min((self.brackets[num] - running_income_portion_calculated), income_decrement)
-				# Keep track of total amount of income that taxes have already been calculated for.
-				running_income_portion_calculated += tax_bracket_portion
-				# print(f'current income portion calculating: {tax_bracket_portion}')
+				# Determines if income remaining or tax bracket portion should be used.
+				tax_bracket_portion= min(self.brackets[index], income_decremented)
 				# Determine taxes on current tax bracket portion.
-				portion = tax_bracket_portion * self.rates[num]
-				# print(f"this portion's income tax: {portion}")
+				portion = tax_bracket_portion * self.rates[index]
 				# Keep track of taxes calculated thus far.
 				tax += portion
 				# Calculate remaining income to calculate taxes on.
-				income_decrement -= tax_bracket_portion
-				# print(f'remaining income to be taxed {income_decrement}')
-				# print('\n')
-			# If there is no more income remaining to calculate taxes on.	
+				income_decremented -= tax_bracket_portion
+				# If there is no more income remaining to calculate taxes on.
+				index += 1
+			elif index < 6 and index > 0:
+				tax_bracket_portion= min((self.brackets[index]-self.brackets[index-1]), income_decremented)
+				portion = tax_bracket_portion * self.rates[index]
+				tax += portion
+				income_decremented -= tax_bracket_portion
+				index += 1
 			else:
-				# Determine final income after all bracket tax values have been calculated. 
-				income_after_tax = income - tax
-				break
-		return f'Base Income: ${income:,.2f}, Tax: ${tax:,.2f}, Income After Tax: ${income_after_tax:,.2f}, Monthly Income: ${income_after_tax/12:,.2f}'
-
+				tax_bracket_portion = income_decremented
+				portion = tax_bracket_portion * self.rates[index]
+				tax += portion
+				income_decremented -= tax_bracket_portion
+							
+		# Determine final income after all bracket tax values have been calculated. 
+		income_after_tax = income - tax
+		return f'''Base Income: ${income:,.2f}, Tax: ${tax:,.2f}, Income After Tax: ${income_after_tax:,.2f}, Monthly Income After Tax: ${income_after_tax/12:,.2f}'''
 		
-# results=FedTaxCalc(tax_rates, tax_brackets)
-# print(results.federal_tax_calculator(100000))
+# Uncomment the next two lines to enter an annual gross income to calculate.	
+#results=FedTaxCalc(tax_rates, tax_brackets)
+#print(results.federal_tax_calculator(100000))
 
