@@ -25,7 +25,6 @@ class FedTaxCalc:
 		while income_decremented > 0:
 			if index == 0:
 				# Make sure there is income remaining to be taxed.
-				# print(f'calculated income portion: {tax_bracket_portion}')
 				# Determines if income remaining or tax bracket portion should be used.
 				tax_bracket_portion= min(self.brackets[index], income_decremented)
 				# Determine taxes on current tax bracket portion.
