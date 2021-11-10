@@ -49,9 +49,10 @@ class FedTaxCalc:
 							
 		# Determine final income after all bracket tax values have been calculated. 
 		income_after_tax = income - tax
-		return f'''Base Income: ${income:,.2f}, Tax: ${tax:,.2f}, Income After Tax: ${income_after_tax:,.2f}, Monthly Income After Tax: ${income_after_tax/12:,.2f}'''
+		return f'{chr(10)}Base Income: ${income:,.2f}{chr(10)}Tax: ${tax:,.2f}{chr(10)}Income After Tax: ${income_after_tax:,.2f}{chr(10)}Monthly Income After Tax: ${income_after_tax/12:,.2f}'
+
 		
 # Uncomment the next two lines to enter an annual gross income to calculate.	
-results=FedTaxCalc(tax_rates, tax_brackets)
-print(results.federal_tax_calculator(1500000))
+#results=FedTaxCalc(tax_rates, tax_brackets)
+#print(results.federal_tax_calculator(1500000))
 
