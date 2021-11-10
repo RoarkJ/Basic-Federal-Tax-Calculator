@@ -21,7 +21,7 @@ class FedTaxCalc:
 		income_decremented = income # Incremental portion of income remaining to apply to current tax bracket being calculated for next loop.
 		tax_bracket_portion = 0 # Amount of tax calculated for current bracket calculation on each loop.
 		income_after_tax = 0 # Final income remaining after all federal taxes have been calculated.
-		index = 0 # Keep track of current loop index.
+		index = 0 # Keep track of loop index progression.
 		while income_decremented > 0:
 			if index == 0:
 				# Make sure there is income remaining to be taxed.
@@ -52,6 +52,6 @@ class FedTaxCalc:
 		return f'''Base Income: ${income:,.2f}, Tax: ${tax:,.2f}, Income After Tax: ${income_after_tax:,.2f}, Monthly Income After Tax: ${income_after_tax/12:,.2f}'''
 		
 # Uncomment the next two lines to enter an annual gross income to calculate.	
-#results=FedTaxCalc(tax_rates, tax_brackets)
-#print(results.federal_tax_calculator(100000))
+results=FedTaxCalc(tax_rates, tax_brackets)
+print(results.federal_tax_calculator(500000))
 
